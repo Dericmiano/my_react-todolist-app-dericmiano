@@ -8,7 +8,6 @@ function TodoDetailScreen() {
     const {todoId} = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const deleteMessage = "you deleted the todo successfully";
 
     const TodoDetail = useSelector(state => state.TodoDetail)
     const {loading, error, todo} = TodoDetail
@@ -16,13 +15,14 @@ function TodoDetailScreen() {
     const TodoDelete = useSelector(state => state.TodoDelete)
     const {loading:loadingDelete,error:errorDelete,success:successDelete} = TodoDelete
 
+    if (successDelete){
+        console.log("successfully")
+    }
+
 
 
     useEffect(()=>{
          dispatch(DetailTodoAction(todoId))
-
-
-
     },[dispatch,todoId])
       function deleteHandler(id) {
         console.log("delete handler")
@@ -36,6 +36,8 @@ function TodoDetailScreen() {
             <div className="bg-teal-100 py-8 py-6 shadow rounded-lg sm:px-10 ">
 
             {/*{successDelete ? <h1>{deleteMessage}</h1> : ''}*/}
+                {loading && <Loading/>}
+                {error && <MyMessage>{error}</MyMessage>}
             {loadingDelete && <Loading/>}
             {errorDelete && <MyMessage>{errorDelete}</MyMessage>}
             <Link to='/'>Home</Link>

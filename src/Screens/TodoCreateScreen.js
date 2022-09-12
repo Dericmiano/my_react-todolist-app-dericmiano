@@ -1,13 +1,15 @@
 import {useSelector} from "react-redux";
 import {useState} from "react";
-import {Link} from "react-router-dom";
 
 function TodoCreateScreen() {
     const [title, setTitle] = useState('');
     const [completed, setCompleted] =useState(false);
 
-    const  TodoCreate = useSelector(state => state.TodoCreate)
-    const {loading, error, todo} = TodoCreate
+    // const  TodoCreate = useSelector(state => state.TodoCreate)
+    // const {loading, error, todo} = TodoCreate
+    // console.log()
+    // console.log()
+    // console.log(todo)
 
 
     function handleSubmit(e) {

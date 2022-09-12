@@ -1,7 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {DetailTodoAction, UpdateTodoAction} from "../actions/TodosActions";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
+import Loading from "../components/Loading";
+import MyMessage from "../components/MyMessage";
 
 function TodoUpdateScreen() {
     const {todoId} = useParams();
@@ -43,6 +45,10 @@ function TodoUpdateScreen() {
 
     return(
         <div className="w-70px px-3 py-2">
+            {loading && <Loading/>}
+                {error && <MyMessage>{error}</MyMessage>}
+            {loadingUpdate && <Loading/>}
+                {errorUpdate && <MyMessage>{errorUpdate}</MyMessage>}
             <div className="bg-neutral-200 py-8 py-6 shadow rounded-lg sm:px-10 ">
                 <form className="mb-0 space-y-6" onSubmit={submitHandler}>
                     <div className='ui form'>

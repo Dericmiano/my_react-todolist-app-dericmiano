@@ -1,12 +1,8 @@
-import { FaBeer } from 'react-icons/fa';
-import {useState, useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+
 import {Link} from "react-router-dom"
-import Home from "../Screens/Home";
-import {DetailTodoAction} from "../actions/TodosActions";
+
 
 function Todo({todo}) {
-    const dispatch=useDispatch();
 
     return(
         <div className="box-border rounded-lg flex items-centre
