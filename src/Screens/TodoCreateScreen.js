@@ -1,25 +1,34 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
+import {CreateTodoAction} from "../actions/TodosActions";
+import Loading from "../components/Loading";
+import MyMessage from "../components/MyMessage";
+import {useNavigate} from "react-router-dom";
 
 function TodoCreateScreen() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [completed, setCompleted] =useState(false);
+    const id = Math.random() * 100
 
-    // const  TodoCreate = useSelector(state => state.TodoCreate)
-    // const {loading, error, todo} = TodoCreate
-    // console.log()
-    // console.log()
-    // console.log(todo)
+    const  TodoCreate = useSelector(state => state.TodoCreate)
+    const {loading, error, todo} = TodoCreate
+
 
 
     function handleSubmit(e) {
         e.preventDefault()
+        dispatch(CreateTodoAction({id,title,completed}))
         console.log("submitted successfully")
+        navigate('/')
     }
 
 
     return(
         <div className="w-70px px-3 py-2 relative">
+            {loading&&<Loading/>}
+            {error&&<MyMessage>{error}</MyMessage>}
             <div className="bg-neutral-200 py-8 py-6 shadow rounded-lg sm:px-10 ">
                 <form className="mb-0 space-y-6" onSubmit={handleSubmit}>
                     <div className='ui form'>
